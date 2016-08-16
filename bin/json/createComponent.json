@@ -1,0 +1,12 @@
+{
+  "name": "Canary Component",
+  "description": "Component used to test the air in your various environments",
+  "importAutomatically": false,
+  "useVfs": true,
+  "sourceConfigPlugin": "File System (Versioned)",
+  "defaultVersionType": "FULL",
+  "properties": {
+    "FileSystemVersionedComponentProperties\/basePath":
+    "newcomponent"
+  }
+}

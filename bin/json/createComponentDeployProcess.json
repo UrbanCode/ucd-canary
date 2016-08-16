@@ -1,0 +1,106 @@
+{
+	"name" : "Deploy the canary",
+	"component" : "Canary Component",
+	"description" : "New component process for command example",
+	"defaultWorkingDir" : "${p:resource\/work.dir}\/${p:component.name}",
+	"takesVersion" : true,
+	"inventoryActionType" : "ADD",
+	"status" : "Active",
+	"configActionType" : "ADD",
+	"active" : "true",
+	"propDefs" : [
+	],
+	"rootActivity" : {
+
+		"type" : "graph",
+		"name" : "ff96a50f-4d04-4c58-b86f-1ce6b5281dca",
+		"edges" : [{
+				"to" : "Delete Files and Directories",
+				"type" : "ALWAYS",
+				"value" : ""
+			}, {
+				"to" : "Download Artifacts",
+				"from" : "Delete Files and Directories",
+				"type" : "SUCCESS",
+				"value" : ""
+			}, {
+				"to" : "9129bf167b34bc13c0b15e0173407c",
+				"from" : "Download Artifacts",
+				"type" : "SUCCESS",
+				"value" : ""
+			}
+		],
+		"offsets" : [{
+				"name" : "Download Artifacts",
+				"x" : 225,
+				"y" : 296,
+				"h" : 50,
+				"w" : 320
+			}, {
+				"name" : "9129bf167b34bc13c0b15e0173407c",
+				"x" : -5,
+				"y" : 420,
+				"h" : 50,
+				"w" : 90
+			}, {
+				"name" : "Delete Files and Directories",
+				"x" : 96,
+				"y" : 138,
+				"h" : 50,
+				"w" : 420
+			}
+		],
+		"children" : [{
+				"type" : "finish",
+				"name" : "9129bf167b34bc13c0b15e0173407c",
+				"children" : []
+			}, {
+				"allowFailure" : false,
+				"useImpersonation" : false,
+				"showHidden" : false,
+				"impersonationUseSudo" : false,
+				"commandName" : "Delete Files and Directories",
+				"pluginName" : "File Utils",
+				"pluginVersion" : 46,
+				"properties" : {
+					"baseDir" : ".",
+					"includes" : "*",
+					"excludes" : "",
+					"followSymlinks" : "false",
+					"caseSensitive" : "true"
+				},
+				"type" : "plugin",
+				"name" : "Delete Files and Directories",
+				"children" : []
+			}, {
+				"allowFailure" : false,
+				"useImpersonation" : false,
+				"showHidden" : false,
+				"impersonationUseSudo" : false,
+				"workingDir" : "\/tmp\/canaryTest",
+				"commandName" : "Download Artifacts",
+				"pluginName" : "IBM UrbanCode Deploy Versioned File Storage",
+				"pluginVersion" : 26,
+				"properties" : {
+					"directoryOffset" : ".",
+					"artifactSetBaseDir" : "",
+					"fileIncludePatterns" : "**\/*",
+					"fileExcludePatterns" : "",
+					"syncMode" : "true",
+					"fullVerification" : "true",
+					"setFileExecuteBits" : "false",
+					"verifyFileIntegrity" : "false",
+					"versionId" : "${p:version.id}",
+					"serverUrl" : "${p:server.url}",
+					"compId" : "${p:component.id}",
+					"resId" : "${p:resource.id}",
+					"charset" : "",
+					"label" : ""
+				},
+				"type" : "plugin",
+				"name" : "Download Artifacts",
+				"children" : []
+			}
+		]
+	}
+}

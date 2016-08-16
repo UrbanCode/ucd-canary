@@ -1,0 +1,6 @@
+{
+  "name": "Canary Application",
+  "description": "Application used to test e2e functionality of an environment",
+  "notificationScheme": "Default Notification Scheme",
+  "enforceCompleteSnapshots": "false"
+}

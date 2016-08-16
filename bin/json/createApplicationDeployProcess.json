@@ -1,0 +1,65 @@
+{
+	"name" : "Deploy Canary Application",
+	"application" : "Canary Application",
+	"description" : "Deploy canary component to the target environment",
+	"inventoryManagementType" : "AUTOMATIC",
+	"offlineAgentHandling" : "PRE_EXECUTION_CHECK",
+	"rootActivity" : {
+		"type" : "graph",
+		"name" : "GRAPH",
+		"edges" : [{
+				"to" : "Deploy component",
+				"type" : "ALWAYS",
+				"value" : ""
+			}, {
+				"to" : "FINISH",
+				"from" : "Deploy component",
+				"type" : "ALWAYS",
+				"value" : ""
+			}
+		],
+		"offsets" : [{
+				"name" : "Deploy component",
+				"x" : "-35",
+				"y" : "210"
+			}, {
+				"name" : "FINISH",
+				"x" : "0",
+				"y" : "420"
+			}
+		],
+		"children" : [{
+				"componentName" : "Canary Component",
+				"failFast" : "false",
+				"runOnlyOnFirst" : "false",
+				"maxIteration" : "-1",
+				"type" : "componentEnvironmentIterator",
+				"name" : "Deploy component",
+				"children" : [{
+						"componentName" : "Canary Component",
+						"status" : "Active",
+						"type" : "inventoryVersionDiff",
+						"name" : "inventoryVersionCheck",
+						"children" : [{
+								"componentName" : "Canary Component",
+								"componentProcessName" : "Deploy the canary",
+								"allowFailure" : false,
+								"properties" : {},
+								"type" : "componentProcess",
+								"name" : "Deploy component",
+								"children" : [
+								]
+							}
+						]
+					}
+				]
+			}, {
+				"type" : "finish",
+				"name" : "FINISH",
+				"children" : [
+				]
+			}
+		]
+	},
+    "propDefs" : []
+}
